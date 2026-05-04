@@ -2,13 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  padding: 18px 24px;
+  gap: 10px;
+  margin: 0 auto 18px auto;
+  padding: 12px 14px;
   background: #ffffff;
-  border-radius: 24px;
-  border: 1px solid #e7e7ef;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  border-radius: var(--border-radius-xl);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.08);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 1100px;
 }
 
 .shell-topbar.shell-topbar-dashboard {
@@ -37,8 +40,9 @@
 .shell-topbar-actions-primary {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .tiktok-platform-layout-switch {
@@ -49,6 +53,12 @@
   flex-wrap: wrap;
 }
 
+.tiktok-platform-layout-switch-inline {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
 .tiktok-platform-layout-switch-under-actions {
   padding-top: 0;
   border-top: none;
@@ -56,58 +66,69 @@
   width: 100%;
 }
 
-/* Mode « mobile » : même largeur pour le bandeau + le contenu, tout lisible */
+/* Mode « mobile » : organisation exacte comme screenshot */
 .tiktok-shell.shell-platform-layout-mobile .shell-topbar.shell-topbar-dashboard {
   max-width: 430px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 14px 16px;
+  padding: 12px 16px;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .shell-topbar-row {
   flex-direction: column;
   align-items: stretch;
-  gap: 14px;
+  gap: 16px;
+  width: 100%;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .shell-topbar-left {
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 12px;
+  width: 100%;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .tiktok-brand {
-  padding: 10px 14px;
-  font-size: 0.9rem;
+  padding: 10px 16px;
+  font-size: 14px;
+  flex: 0 1 auto;
+  max-width: 140px;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .back-link {
-  padding: 10px 14px;
-  font-size: 0.88rem;
+  padding: 10px 16px;
+  font-size: 14px;
+  flex: 0 0 auto;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .shell-topbar.shell-topbar-dashboard .shell-topbar-actions {
   align-items: stretch;
   width: 100%;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .shell-topbar-actions-primary {
-  flex-direction: column;
-  justify-content: stretch;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
+  gap: 12px;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .strategy-button,
 .tiktok-shell.shell-platform-layout-mobile .create-button {
-  width: 100%;
+  flex: 1;
   justify-content: center;
   box-sizing: border-box;
+  padding: 12px 16px;
+  font-size: 14px;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .tiktok-platform-layout-switch-under-actions {
   justify-content: center;
+  width: 100%;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .tiktok-platform-layout-switch-buttons {
@@ -115,14 +136,19 @@
   max-width: 100%;
   box-sizing: border-box;
   display: flex;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 4px;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .tiktok-platform-layout-switch-buttons button {
   flex: 1;
   justify-content: center;
   min-width: 0;
-  padding: 10px 10px;
-  font-size: 0.82rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .tiktok-shell.shell-platform-layout-mobile .tiktok-shell-inner.platform-layout-mobile {
@@ -148,8 +174,8 @@
 
 .tiktok-platform-layout-switch-buttons {
   display: inline-flex;
-  gap: 6px;
-  padding: 5px;
+  gap: 4px;
+  padding: 3px;
   border-radius: 999px;
   background: #f3f4f6;
   border: 1px solid #e5e7eb;
@@ -158,13 +184,13 @@
 .tiktok-platform-layout-switch-buttons button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 999px;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
   border: none;
   background: transparent;
-  font-weight: 700;
-  font-size: 0.875rem;
+  font-weight: 500;
+  font-size: 12px;
   color: #6b7280;
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
@@ -181,41 +207,43 @@
 }
 
 .tiktok-shell-inner.platform-layout-mobile > main.tiktok-page {
-  max-width: none;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .tiktok-shell-inner.platform-layout-desktop > main.tiktok-page {
-  max-width: none;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 
 .shell-topbar-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 
 .tiktok-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: #000000;
   color: #ffffff;
-  border-radius: 999px;
-  padding: 12px 18px;
+  border-radius: 8px;
+  padding: 8px 16px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .tiktok-brand-logo {
   display: inline-flex;
-  width: 30px;
-  height: 30px;
-  min-width: 30px;
-  min-height: 30px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
@@ -223,30 +251,31 @@
 }
 
 .tiktok-brand-logo img {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
 }
 
 .tiktok-brand-text {
-  font-size: 0.95rem;
+  font-size: 13px;
 }
 
 .back-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: #6b7280;
   background: #f8fafc;
-  border: 1px solid #e7e7ef;
-  border-radius: 999px;
-  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 16px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .shell-topbar-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -254,10 +283,11 @@
 .create-button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 18px;
-  border-radius: 999px;
-  font-weight: 700;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
   text-decoration: none;
 }
 
@@ -275,25 +305,28 @@
 }
 
 .dashboard-tiktok-dashboard {
-  display: grid;
-  gap: 24px;
-  width: min(1140px, 100%);
+  max-width: 1100px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .dashboard-card {
-  border-radius: 24px;
+  border-radius: 12px;
   background: #ffffff;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-  padding: 24px;
-  border: 1px solid #e7e7ef;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  padding: 20px;
+  border: 1px solid #e5e7eb;
 }
 
 .dashboard-publish-card {
   border: 1px solid #e5e7eb;
   background: #ffffff;
-  border-radius: 32px;
-  padding: 24px;
+  border-radius: 12px;
+  padding: 20px;
 }
 
 /* Story: ne pas enfermer visuellement le contenu dans une card étroite */

@@ -84,12 +84,11 @@ export default function ThreadsShell({ counts, outletContext }) {
                   onClick={() => setShowCreateSection(true)}
                 >
                 <Plus size={16} />
-                Créer du contenu
+                Créer un post
               </button>
-              </div>
 
               <div
-                className="tiktok-platform-layout-switch tiktok-platform-layout-switch-under-actions threads-platform-layout-switch"
+                className="tiktok-platform-layout-switch tiktok-platform-layout-switch-inline threads-platform-layout-switch"
                 role="group"
                 aria-label="Affichage bureau ou mobile du tableau Threads"
               >
@@ -99,7 +98,6 @@ export default function ThreadsShell({ counts, outletContext }) {
                     className={threadsPlatformLayout === 'desktop' ? 'active' : ''}
                     onClick={() => setThreadsPlatformLayout('desktop')}
                   >
-                    <Monitor size={16} />
                     Desktop
                   </button>
                   <button
@@ -107,10 +105,10 @@ export default function ThreadsShell({ counts, outletContext }) {
                     className={threadsPlatformLayout === 'mobile' ? 'active' : ''}
                     onClick={() => setThreadsPlatformLayout('mobile')}
                   >
-                    <Smartphone size={16} />
                     Mobile
                   </button>
                 </div>
+              </div>
               </div>
             </div>
           </div>

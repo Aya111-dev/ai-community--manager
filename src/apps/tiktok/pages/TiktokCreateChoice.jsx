@@ -34,7 +34,7 @@ export default function TiktokCreateChoice() {
               <span className="choice-icon">{choice.title[0]}</span>
               <div>
                 <strong>{choice.title}</strong>
-                <p>Créer un contenu {choice.title.toLowerCase()}</p>
+                <p>Créer un post {choice.title.toLowerCase()}</p>
               </div>
             </button>
           ))}

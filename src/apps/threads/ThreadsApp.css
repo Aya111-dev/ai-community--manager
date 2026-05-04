@@ -7,12 +7,72 @@
   --threads-bg-card: #ffffff;
 }
 
+.threads-app .shell-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto 18px auto;
+  padding: 12px 14px;
+  background: #ffffff;
+  border-radius: var(--border-radius-xl);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.08);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 1100px;
+}
+
+.threads-app .shell-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.threads-app .shell-topbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.threads-app .shell-topbar-actions-primary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .threads-app .threads-brand.tiktok-brand {
   background: #101010;
+  font-size: 14px;
+  padding: 8px 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  gap: 8px;
+}
+
+.threads-app .threads-brand.tiktok-brand .tiktok-brand-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.threads-app .threads-brand.tiktok-brand .tiktok-brand-logo img {
+  width: 14px;
+  height: 14px;
 }
 
 .threads-app .threads-create-button.create-button {
-  background: linear-gradient(135deg, #101010, #2a2a2a);
+  background: linear-gradient(135deg, #0b0b0b, #1f1f1f);
+  font-size: 14px;
+  padding: 8px 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.28);
 }
 
 /* Cartes grille — garde dimensions TikTok, fond type Threads */
@@ -51,25 +111,25 @@
 }
 
 .threads-thread-avatar-lg {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #101010;
   color: #fff;
   display: grid;
   place-items: center;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 12px;
 }
 
 .threads-thread-handle {
   font-weight: 700;
   color: var(--threads-fg);
-  font-size: 0.95rem;
+  font-size: 13px;
 }
 
 .threads-thread-kind {
-  font-size: 0.75rem;
+  font-size: 11px;
   color: var(--threads-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -80,13 +140,13 @@
   white-space: pre-wrap;
   line-height: 1.45;
   color: var(--threads-fg);
-  font-size: 0.95rem;
+  font-size: 13px;
 }
 
 .threads-thread-toolbar {
   display: flex;
-  gap: 18px;
-  font-size: 0.88rem;
+  gap: 14px;
+  font-size: 12px;
   color: var(--threads-muted);
 }
 
@@ -153,8 +213,8 @@
 }
 
 .threads-compose-kind-pill {
-  margin: 0 0 10px;
-  font-size: 0.82rem;
+  margin: 0 0 8px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--threads-muted);
 }
@@ -162,21 +222,21 @@
 .threads-compose-textarea {
   width: 100%;
   resize: vertical;
-  min-height: 140px;
-  padding: 14px 16px;
-  border-radius: 16px;
+  min-height: 120px;
+  padding: 12px 14px;
+  border-radius: 14px;
   border: 1px solid var(--threads-line);
-  font-size: 1rem;
+  font-size: 13px;
   line-height: 1.45;
   font-family: inherit;
   box-sizing: border-box;
 }
 
 .threads-composer-meta {
-  font-size: 0.82rem;
+  font-size: 11px;
   color: var(--threads-muted);
   text-align: right;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .threads-compose-publish-row.tiktok-publish-actions {
@@ -184,30 +244,110 @@
 }
 
 .threads-publish-toast {
-  margin-bottom: 14px;
-  padding: 12px 16px;
-  border-radius: 14px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
   color: #065f46;
-  font-size: 0.92rem;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .threads-banner-notice {
-  margin-bottom: 16px;
-  padding: 12px 16px;
-  border-radius: 14px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
   color: #1e40af;
-  font-size: 0.92rem;
+  font-size: 12px;
   font-weight: 600;
 }
 
-/* Flux — même squelette que TikTokHome */
-.threads-feed-card .threads-feed-device {
-  background: #fafafa;
+/* Threads mobile layout - organisation exacte comme screenshot */
+.threads-app.shell-platform-layout-mobile .shell-topbar.shell-topbar-dashboard {
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 16px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.threads-app.shell-platform-layout-mobile .shell-topbar-row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+}
+
+.threads-app.shell-platform-layout-mobile .shell-topbar-left {
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.threads-app.shell-platform-layout-mobile .threads-brand.tiktok-brand {
+  padding: 10px 16px;
+  font-size: 14px;
+  flex: 0 1 auto;
+  max-width: 140px;
+}
+
+.threads-app.shell-platform-layout-mobile .back-link {
+  padding: 10px 16px;
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+
+.threads-app.shell-platform-layout-mobile .shell-topbar.shell-topbar-dashboard .shell-topbar-actions {
+  align-items: stretch;
+  width: 100%;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.threads-app.shell-platform-layout-mobile .shell-topbar-actions-primary {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+}
+
+.threads-app.shell-platform-layout-mobile .strategy-button,
+.threads-app.shell-platform-layout-mobile .threads-create-button.create-button {
+  flex: 1;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.threads-app.shell-platform-layout-mobile .tiktok-platform-layout-switch-under-actions {
+  justify-content: center;
+  width: 100%;
+}
+
+.threads-app.shell-platform-layout-mobile .tiktok-platform-layout-switch-buttons {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.threads-app.shell-platform-layout-mobile .tiktok-platform-layout-switch-buttons button {
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .threads-feed-body-scroll {

@@ -1,12 +1,9 @@
-﻿
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FacebookApp from '../apps/facebook/FacebookApp.jsx';
 import InstagramApp from '../apps/instagram/InstagramApp.jsx';
 import LinkedinApp from '../apps/linkedin/LinkedinApp.jsx';
 import PinterestApp from '../apps/pinterest/PinterestApp.jsx';
-import ThreadsApp from '../apps/threads/ThreadsApp.jsx';
-import TiktokApp from '../apps/tiktok/TiktokApp.jsx';
 import XApp from '../apps/x/XApp.jsx';
 import YoutubeApp from '../apps/Youtube/YoutubeApp.jsx';
 
@@ -85,12 +82,23 @@ const Home = () => {
 
   const platformName = platforms.find((platform) => platform.id === activePlatform)?.name || 'Platforme';
   const handlePlatformClick = (platform) => {
+    setActivePlatform(platform.id);
+
     if (platform.id === 'facebook') {
       navigate('/facebook');
       return;
     }
 
-    setActivePlatform(platform.id);
+    if (platform.id === 'tiktok') {
+      navigate('/tiktok');
+      return;
+    }
+
+    if (platform.id === 'threads') {
+      navigate('/threads');
+      return;
+    }
+
     setActiveWorkspace(platform.id);
   };
 
@@ -99,10 +107,8 @@ const Home = () => {
     if (activeWorkspace === 'instagram') return <InstagramApp onBack={onBack} />;
     if (activeWorkspace === 'x') return <XApp onBack={onBack} />;
     if (activeWorkspace === 'linkedin') return <LinkedinApp onBack={onBack} />;
-    if (activeWorkspace === 'tiktok') return <TiktokApp onBack={onBack} />;
     if (activeWorkspace === 'pinterest') return <PinterestApp onBack={onBack} />;
     if (activeWorkspace === 'youtube') return <YoutubeApp onBack={onBack} />;
-    if (activeWorkspace === 'threads') return <ThreadsApp onBack={onBack} />;
     if (activeWorkspace === 'facebook') return <FacebookApp />;
   }
 

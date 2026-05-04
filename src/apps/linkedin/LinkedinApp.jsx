@@ -1,5 +1,5 @@
 import React from 'react';
-import PlatformWorkspace from '../common/PlatformWorkspace.jsx';
+import LinkedinWorkspace from './LinkedinWorkspace.jsx';
 
 const LINKEDIN_META = {
   id: 'linkedin',
@@ -9,6 +9,5 @@ const LINKEDIN_META = {
 };
 
 export default function LinkedinApp({ onBack }) {
-  return <PlatformWorkspace meta={LINKEDIN_META} onBack={onBack} />;
+  return <LinkedinWorkspace meta={LINKEDIN_META} onBack={onBack} />;
 }
-

@@ -1,11 +1,96 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
+import PostForm from '../facebook/components/PostForm.jsx'
+import PostsList from '../facebook/components/PostsList.jsx'
+import PostTypeSelector from '../facebook/components/PostTypeSelector.jsx'
 
-export default function PlatformWorkspace({ meta, onBack }) {
-  const [activeTab, setActiveTab] = useState('Publiés');
-  const [deviceView, setDeviceView] = useState('Mobile');
+async function resolveMediaUrl(item) {
+  if (!item) return item
+  const url = item.url || ''
+  if (!url.startsWith('blob:')) return item
+  if (item.file instanceof File) {
+    return new Promise((resolve) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve({ ...item, url: reader.result, file: null })
+      reader.onerror = () => resolve({ ...item, file: null })
+      reader.readAsDataURL(item.file)
+    })
+  }
+  return { ...item, file: null }
+}
 
-  const posts = useMemo(() => [], []);
-  const platformName = meta?.name ?? 'Plateforme';
+async function resolvePostMedia(postData) {
+  if (!Array.isArray(postData.media) || postData.media.length === 0) return postData
+  const resolvedMedia = await Promise.all(postData.media.map(resolveMediaUrl))
+  return { ...postData, media: resolvedMedia }
+}
+
+export default function PlatformWorkspace({ meta, onBack, posts = [], setPosts }) {
+  const [activeTab, setActiveTab] = useState('Publiés')
+  const [deviceView, setDeviceView] = useState('Mobile')
+  const [showCreateForm, setShowCreateForm] = useState(false)
+  const [selectedPostType, setSelectedPostType] = useState(null)
+  const [editingPost, setEditingPost] = useState(null)
+  const composerRef = useRef(null)
+
+  const platformName = meta?.name ?? 'Plateforme'
+
+  const closeComposer = () => {
+    setShowCreateForm(false)
+    setSelectedPostType(null)
+    setEditingPost(null)
+  }
+
+  const openCreateFlow = () => {
+    setEditingPost(null)
+    setSelectedPostType(null)
+    setShowCreateForm(prev => !prev)
+  }
+
+  const openCreateFlowForType = (type) => {
+    setEditingPost(null)
+    setSelectedPostType(type)
+    setShowCreateForm(true)
+  }
+
+  const savePost = async (postData, status) => {
+    const resolvedData = await resolvePostMedia(postData)
+    const nextPost = {
+      id: editingPost?.id ?? Date.now(),
+      ...resolvedData,
+      status,
+      createdAt: editingPost?.createdAt ?? new Date(),
+      updatedAt: new Date(),
+    }
+    setPosts(prev => {
+      return editingPost
+        ? prev.map(p => (p.id === editingPost.id ? nextPost : p))
+        : [nextPost, ...prev]
+    })
+    closeComposer()
+  }
+
+  const handleEditPost = (post) => {
+    setEditingPost(post)
+    setSelectedPostType(post.type)
+    setShowCreateForm(true)
+  }
+
+  const handleDeletePost = (postId) => {
+    setPosts(prev => prev.filter(p => p.id !== postId))
+  }
+
+  useEffect(() => {
+    if (!showCreateForm || !selectedPostType) return
+    const composer = composerRef.current
+    if (!composer) return
+    composer.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const focusTimer = window.setTimeout(() => {
+      const firstField = composer.querySelector('textarea, input, select, button')
+      firstField?.focus()
+    }, 250)
+    return () => window.clearTimeout(focusTimer)
+  }, [showCreateForm, selectedPostType, editingPost])
 
   return (
     <main className="homepage-screen">
@@ -27,8 +112,10 @@ export default function PlatformWorkspace({ meta, onBack }) {
             type="button"
             className="action-btn-secondary outline"
             onClick={() => onBack?.()}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
           >
-            ← Retourner
+            <ArrowLeft size={15} strokeWidth={2.5} />
+            Retourner
           </button>
         </div>
 
@@ -36,70 +123,51 @@ export default function PlatformWorkspace({ meta, onBack }) {
           <button type="button" className="action-btn-secondary outline">
             Stratégie
           </button>
-          <button type="button" className="btn-primary">
-            + Créer un post
+          <button type="button" className="btn-primary" onClick={openCreateFlow}>
+            {showCreateForm ? 'Fermer' : '+ Créer un post'}
           </button>
         </div>
       </header>
 
-      <section className="posts-card card">
-        <div className="posts-card-header">
-          <h2>Posts publiés</h2>
-          <div className="posts-card-controls">
-            <div className="posts-card-tabs">
-              {['Publiés', 'Planifiés', 'Brouillons'].map((tab) => (
-                <button
-                  key={tab}
-                  type="button"
-                  className={`tab-pill ${activeTab === tab ? 'active' : ''}`}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-            <div className="device-toggle">
-              <button
-                type="button"
-                className={`device-pill ${deviceView === 'Desktop' ? 'active' : ''}`}
-                onClick={() => setDeviceView('Desktop')}
-              >
-                Desktop
-              </button>
-              <button
-                type="button"
-                className={`device-pill ${deviceView === 'Mobile' ? 'active' : ''}`}
-                onClick={() => setDeviceView('Mobile')}
-              >
-                Mobile
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="posts-list">
-          {posts.length === 0 ? (
-            <div className="empty-state">
-              Aucun post {activeTab.toLowerCase()} pour <strong>{platformName}</strong>.
-            </div>
+      {showCreateForm && (
+        <section
+          ref={composerRef}
+          className="create-post-section card"
+          style={{ marginBottom: 20, overflow: 'visible', position: 'relative', zIndex: 20 }}
+        >
+          {selectedPostType ? (
+            <PostForm
+              postType={selectedPostType}
+              initialData={editingPost}
+              onPublish={(postData) => savePost(postData, 'published')}
+              onSchedule={(postData) => savePost(postData, 'scheduled')}
+              onDraft={(postData) => savePost(postData, 'draft')}
+              onClose={closeComposer}
+            />
           ) : (
-            posts.map((post) => (
-              <article key={post.id} className="post-item card">
-                <div className="post-item-header">
-                  <span className="post-item-platform">{platformName}</span>
-                  <span className="post-item-status">{post.status}</span>
-                </div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <div className="post-item-footer">
-                  <span>{post.createdAt}</span>
-                </div>
-              </article>
-            ))
+            <PostTypeSelector
+              onSelectType={(type) => setSelectedPostType(type)}
+              onClose={closeComposer}
+            />
           )}
+        </section>
+      )}
+
+      <section className="posts-card card" style={{ maxWidth: '100%', width: '100%', position: 'relative', zIndex: 1 }}>
+        <div className="posts-list">
+          <PostsList
+            posts={posts}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            deviceView={deviceView}
+            setDeviceView={setDeviceView}
+            onCreatePost={openCreateFlow}
+            onCreatePostType={openCreateFlowForType}
+            onEditPost={handleEditPost}
+            onDeletePost={handleDeletePost}
+          />
         </div>
       </section>
     </main>
-  );
+  )
 }
-

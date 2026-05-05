@@ -1,5 +1,6 @@
 import React from 'react';
-import PlatformWorkspace from '../common/PlatformWorkspace.jsx';
+import XWorkspace from './components/XWorkspace.jsx';
+import './styles/x.css';
 
 const X_META = {
   id: 'x',
@@ -9,6 +10,6 @@ const X_META = {
 };
 
 export default function XApp({ onBack }) {
-  return <PlatformWorkspace meta={X_META} onBack={onBack} />;
+  return <XWorkspace meta={X_META} onBack={onBack} />;
 }
 

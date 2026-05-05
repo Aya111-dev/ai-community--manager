@@ -25,7 +25,30 @@ async function resolvePostMedia(postData) {
   return { ...postData, media: resolvedMedia }
 }
 
-export default function PlatformWorkspace({ meta, onBack, posts = [], setPosts }) {
+export default function PlatformWorkspace({ meta, onBack, posts: postsProp, setPosts: setPostsProp }) {
+  // ─── FIX: internal fallback so buttons never crash when posts/setPosts
+  //     are not passed from outside (e.g. App.jsx missing the props).
+  const storageKey = `platform_posts_${meta?.id ?? 'default'}`
+  const [internalPosts, setInternalPosts] = useState(() => {
+    if (postsProp !== undefined) return []
+    if (typeof window === 'undefined') return []
+    try {
+      const saved = window.localStorage.getItem(storageKey)
+      return saved ? JSON.parse(saved) : []
+    } catch { return [] }
+  })
+  const posts = postsProp !== undefined ? postsProp : internalPosts
+  const setPosts = setPostsProp !== undefined
+    ? setPostsProp
+    : (updater) => {
+        setInternalPosts(prev => {
+          const next = typeof updater === 'function' ? updater(prev) : updater
+          try { window.localStorage.setItem(storageKey, JSON.stringify(next)) } catch { /* ignore */ }
+          return next
+        })
+      }
+  // ──────────────────────────────────────────────────────────────────────────
+
   const [activeTab, setActiveTab] = useState('Publiés')
   const [deviceView, setDeviceView] = useState('Mobile')
   const [showCreateForm, setShowCreateForm] = useState(false)

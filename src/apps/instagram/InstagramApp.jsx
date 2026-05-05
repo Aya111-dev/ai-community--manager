@@ -1,5 +1,6 @@
 import React from 'react';
-import PlatformWorkspace from '../common/PlatformWorkspace.jsx';
+import InstagramWorkspace from './components/InstagramWorkspace.jsx';
+import './styles/instagram.css';
 
 const INSTAGRAM_META = {
   id: 'instagram',
@@ -9,5 +10,5 @@ const INSTAGRAM_META = {
 };
 
 export default function InstagramApp({ onBack }) {
-  return <PlatformWorkspace meta={INSTAGRAM_META} onBack={onBack} />;
+  return <InstagramWorkspace meta={INSTAGRAM_META} onBack={onBack} />;
 }

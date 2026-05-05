@@ -87,29 +87,7 @@ export default function ThreadsShell({ counts, outletContext }) {
                 Créer un post
               </button>
 
-              <div
-                className="tiktok-platform-layout-switch tiktok-platform-layout-switch-inline threads-platform-layout-switch"
-                role="group"
-                aria-label="Affichage bureau ou mobile du tableau Threads"
-              >
-                <div className="tiktok-platform-layout-switch-buttons">
-                  <button
-                    type="button"
-                    className={threadsPlatformLayout === 'desktop' ? 'active' : ''}
-                    onClick={() => setThreadsPlatformLayout('desktop')}
-                  >
-                    Desktop
-                  </button>
-                  <button
-                    type="button"
-                    className={threadsPlatformLayout === 'mobile' ? 'active' : ''}
-                    onClick={() => setThreadsPlatformLayout('mobile')}
-                  >
-                    Mobile
-                  </button>
-                </div>
-              </div>
-              </div>
+                            </div>
             </div>
           </div>
         </header>

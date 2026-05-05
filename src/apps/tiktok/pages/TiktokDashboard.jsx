@@ -5031,7 +5031,7 @@ const handleSchedulePublish = () => {
 
       {/* Section des posts */}
       <section className="dashboard-card dashboard-posts-card">
-        <div className="dashboard-posts-header">
+        <div className="dashboard-posts-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h3>
               {activeTab === 'draft' ? 'Contenu en brouillons' : 
@@ -5040,7 +5040,7 @@ const handleSchedulePublish = () => {
             </h3>
           </div>
           
-          <div className="dashboard-posts-controls">
+          <div className="dashboard-posts-controls" style={{ marginLeft: 'auto' }}>
             <div className="tab-group">
               {tabs.map((tab) => (
                 <button
@@ -5067,6 +5067,7 @@ const handleSchedulePublish = () => {
                 type="button"
                 className={viewMode === 'desktop' ? 'view-button active' : 'view-button'}
                 onClick={() => setViewMode('desktop')}
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', height: '32px' }}
               >
                 <Monitor size={16} />
                 Desktop
@@ -5075,6 +5076,7 @@ const handleSchedulePublish = () => {
                 type="button"
                 className={viewMode === 'mobile' ? 'view-button active' : 'view-button'}
                 onClick={() => setViewMode('mobile')}
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', height: '32px' }}
               >
                 <Smartphone size={16} />
                 Mobile

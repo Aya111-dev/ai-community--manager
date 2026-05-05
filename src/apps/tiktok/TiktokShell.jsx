@@ -83,34 +83,10 @@ export default function TiktokShell({ counts, outletContext }) {
                   onClick={() => setShowCreateSection(true)}
                 >
                   <Plus size={16} />
-                  Créer du contenu
+                  Créer un post
                 </button>
-              </div>
 
-              <div
-                className="tiktok-platform-layout-switch tiktok-platform-layout-switch-under-actions"
-                role="group"
-                aria-label="Affichage bureau ou mobile du tableau TikTok"
-              >
-                <div className="tiktok-platform-layout-switch-buttons">
-                  <button
-                    type="button"
-                    className={tiktokPlatformLayout === 'desktop' ? 'active' : ''}
-                    onClick={() => setTiktokPlatformLayout('desktop')}
-                  >
-                    <Monitor size={16} />
-                    Desktop
-                  </button>
-                  <button
-                    type="button"
-                    className={tiktokPlatformLayout === 'mobile' ? 'active' : ''}
-                    onClick={() => setTiktokPlatformLayout('mobile')}
-                  >
-                    <Smartphone size={16} />
-                    Mobile
-                  </button>
-                </div>
-              </div>
+                              </div>
             </div>
           </div>
         </header>

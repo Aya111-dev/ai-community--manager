@@ -74,7 +74,7 @@ const typeConfig = {
 
 const CreatePost = ({ initialPost = null, onCancel, onPublish, onSchedule, onSaveDraft, onUpdate }) => {
   const defaultAuthor = 'devaito_manager';
-  const profileImage = '/reel-profile.svg';
+  const profileImage = '/instagram-profile.png';
   const [selectedType, setSelectedType] = useState(initialPost?.type ?? 'image');
   const [typeLocked, setTypeLocked] = useState(Boolean(initialPost));
   const [visibleMediaSlots, setVisibleMediaSlots] = useState(initialPost?.type === 'carousel' ? 3 : 1);

@@ -8,7 +8,7 @@ function InstagramPostPreview({ post, deviceView, onEdit, onDelete, hasActiveSto
   const media = post.media ?? [];
   const primaryMedia = media[0];
   const displayAuthor = 'devaito_manager';
-  const profileImage = '/reel-profile.svg';
+  const profileImage = '/instagram-profile.png';
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -351,7 +351,7 @@ function InstagramPostPreview({ post, deviceView, onEdit, onDelete, hasActiveSto
             <div className="ig-reel-overlay-bottom-left">
               <div className="ig-reel-profile-row">
                 <img
-                  src="/reel-profile.svg"
+                  src={profileImage}
                   alt="Profil"
                   className={`ig-reel-avatar-small ig-reel-avatar-photo ${hasActiveStory ? 'ig-avatar-story-ring' : ''} ${hasStories ? 'ig-story-avatar-trigger' : ''}`}
                   role={hasStories ? 'button' : undefined}

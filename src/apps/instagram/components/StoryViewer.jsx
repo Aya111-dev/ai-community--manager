@@ -9,7 +9,7 @@ const StoryViewer = ({ story, onClose, allStories = [], currentStoryIndex = 0, o
   const [isMuted, setIsMuted] = useState(true);
   const media = story?.media?.[0];
   const isVideo = media?.kind === 'video';
-  const profileImage = '/reel-profile.svg';
+  const profileImage = '/instagram-profile.png';
   const displayAuthor = story?.author && story.author.toLowerCase() !== 'utilisateur' ? story.author : 'devaito_manager';
   const menuRef = useRef(null);
   const videoRef = useRef(null);

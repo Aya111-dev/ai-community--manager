@@ -1,7 +1,7 @@
 import React from 'react';
 
 const StoryThumbnail = ({ story, index, onOpen }) => {
-  const profileImage = '/reel-profile.svg';
+  const profileImage = '/instagram-profile.png';
   const displayAuthor = story?.author && story.author.toLowerCase() !== 'utilisateur' ? story.author : 'devaito_manager';
 
   return (

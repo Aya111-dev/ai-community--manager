@@ -1,0 +1,108 @@
+export const TYPE_CONFIG = {
+  image: {
+    label: 'Image',
+    hasCaption: true,
+    hasMedia: true,
+    supportsTextCanvas: true,
+    mediaCount: 1,
+    hasHashtags: true,
+    mediaLabel: 'Ajouter une image',
+    mediaAspect: '4/3',
+  },
+  video: {
+    label: 'Vidéo',
+    hasCaption: true,
+    hasMedia: true,
+    supportsTextCanvas: false,
+    mediaCount: 1,
+    hasHashtags: true,
+    mediaLabel: 'Ajouter une vidéo',
+    mediaAspect: '16/9',
+    isVideo: true,
+  },
+  carousel: {
+    label: 'Carousel',
+    hasCaption: true,
+    hasMedia: true,
+    supportsTextCanvas: false,
+    mediaCount: 3,
+    hasAddMore: true,
+    hasHashtags: true,
+    mediaLabel: 'Ajouter un média',
+    mediaAspect: '1/1',
+  },
+  reel: {
+    label: 'Reel',
+    hasCaption: true,
+    hasMedia: true,
+    supportsTextCanvas: false,
+    mediaCount: 1,
+    hasHashtags: true,
+    mediaLabel: 'Ajouter une vidéo (Reel)',
+    mediaAspect: '9/16',
+    isVideo: true,
+  },
+  story: {
+    label: 'Story',
+    hasCaption: false,
+    hasMedia: true,
+    supportsTextCanvas: true,
+    mediaCount: 1,
+    hasHashtags: false,
+    mediaLabel: 'Ajouter un média (Story)',
+    mediaAspect: '9/16',
+    hasLink: true,
+  },
+}
+
+export const FONT_OPTIONS = [
+  { value: 'Inter, sans-serif', label: 'Inter' },
+  { value: 'Poppins, sans-serif', label: 'Poppins' },
+  { value: 'Montserrat, sans-serif', label: 'Montserrat' },
+  { value: 'Arial, sans-serif', label: 'Arial' },
+  { value: 'Georgia, serif', label: 'Georgia' },
+]
+
+export const STORY_BACKGROUND_OPTIONS = [
+  { id: 'sunset', label: 'Sunset', value: 'linear-gradient(160deg, #f97316 0%, #ec4899 50%, #7c3aed 100%)' },
+  { id: 'ocean', label: 'Ocean', value: 'linear-gradient(160deg, #0f172a 0%, #0369a1 45%, #22d3ee 100%)' },
+  { id: 'mint', label: 'Mint', value: 'linear-gradient(160deg, #052e16 0%, #15803d 48%, #86efac 100%)' },
+  { id: 'gold', label: 'Gold', value: 'linear-gradient(160deg, #78350f 0%, #f59e0b 52%, #fef08a 100%)' },
+  { id: 'berry', label: 'Berry', value: 'linear-gradient(160deg, #3b0764 0%, #be185d 48%, #f9a8d4 100%)' },
+  { id: 'sky', label: 'Sky', value: 'linear-gradient(160deg, #1d4ed8 0%, #38bdf8 52%, #e0f2fe 100%)' },
+]
+
+export const DEFAULT_STYLE = {
+  fontFamily: 'Inter, sans-serif',
+  cardWidth: 100,
+  mediaHeight: 320,
+  mediaFit: 'cover',
+  mediaScale: 1,
+  mediaRotation: 0,
+  mediaOffsetX: 50,
+  mediaOffsetY: 50,
+  overlayText: '',
+  overlayTextX: 50,
+  overlayTextY: 84,
+  overlayTextFontFamily: 'Georgia, serif',
+  overlayTextColor: '#ffffff',
+  storyBackground: STORY_BACKGROUND_OPTIONS[0].value,
+  textCanvasEnabled: false,
+  textCanvasText: 'Commencez à écrire',
+  textCanvasFontFamily: 'Inter, sans-serif',
+  textCanvasFontSize: 48,
+  textCanvasColor: '#ffffff',
+  textCanvasBackground: '#1877f2',
+  textCanvasBold: false,
+  textCanvasX: 30,
+  textCanvasY: 30,
+  textCanvasAlign: 'center',
+}
+
+// 🔥 FIXED (was missing)
+export const FB_TEXT = {
+  placeholder: "Quoi de neuf ?",
+  publish: "Publier",
+  schedule: "Planifier",
+  draft: "Brouillon",
+}

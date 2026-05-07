@@ -10095,11 +10095,11 @@ const handleSchedulePublish = () => {
 
             <h3>
 
-              {activeTab === 'draft' ? 'Contenu en brouillons' : 
+              {activeTab === 'draft' ? 'Brouillons' : 
 
-               activeTab === 'scheduled' ? 'Contenu planifié' : 
+               activeTab === 'scheduled' ? 'Planifiés' : 
 
-               'Contenu publié'}
+               'Fil d\'actualité'}
 
             </h3>
 
@@ -10227,9 +10227,9 @@ const handleSchedulePublish = () => {
 
                     setGalleryMode(false);
 
-                  }}>
+                  }} style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
 
-                    Retour
+                    <ChevronLeft size={24} />
 
                   </div>
 

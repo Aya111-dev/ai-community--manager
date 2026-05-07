@@ -876,7 +876,7 @@ export default function ThreadsDashboard() {
         <div className="dashboard-posts-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h3>
-              {activeTab === 'draft' ? 'Contenu en brouillons' : activeTab === 'scheduled' ? 'Contenu planifié' : 'Contenu publié'}
+              {activeTab === 'draft' ? 'Brouillons' : activeTab === 'scheduled' ? 'Planifiés' : 'Fil d\'actualité'}
             </h3>
           </div>
 

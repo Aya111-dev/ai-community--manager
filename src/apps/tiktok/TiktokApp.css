@@ -2,15 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  margin: 0 auto 18px auto;
   padding: 12px 14px;
-  background: #ffffff;
-  border-radius: var(--border-radius-xl);
-  border: 1px solid rgba(15, 23, 42, 0.10);
-  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.08);
   flex-wrap: nowrap;
   overflow-x: auto;
+  gap: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.08);
+  background: rgba(255, 255, 255, 0.75);
+  margin: 0 auto 24px auto;
   max-width: 1100px;
 }
 
@@ -231,7 +231,7 @@
   gap: 8px;
   background: #000000;
   color: #ffffff;
-  border-radius: 8px;
+  border-radius: 20px;
   padding: 8px 16px;
   text-decoration: none;
   font-weight: 600;
@@ -266,7 +266,7 @@
   color: #6b7280;
   background: #f8fafc;
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  border-radius: 20px;
   padding: 8px 16px;
   text-decoration: none;
   font-weight: 500;
@@ -285,7 +285,7 @@
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 20px;
   font-weight: 500;
   font-size: 14px;
   text-decoration: none;
@@ -2748,7 +2748,7 @@
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Galerie complète avec scroll tactile */
+/* Galerie complète avec scroll tactile comme YouTube Shorts */
 .gallery-full-view {
   position: fixed;
   top: 0;
@@ -2757,71 +2757,99 @@
   height: 100vh;
   background: rgba(0, 0, 0, 0.95);
   z-index: 1000;
-  overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  scrollbar-width: none; /* Cache la scrollbar */
+}
+
+.gallery-full-view::-webkit-scrollbar {
+  display: none; /* Cache la scrollbar pour Safari/Chrome */
 }
 
 .gallery-back-button {
   position: fixed;
-  top: 0;
-  left: 0;
-  background: transparent;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.95);
   color: white;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   cursor: pointer;
-  z-index: 1001;
-  font-size: 14px;
-  font-weight: 500;
+  z-index: 99999;
   border: none;
   outline: none;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  text-decoration: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  padding: 8px 12px;
+  padding: 15px;
+  backdrop-filter: blur(20px);
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.8);
+  width: 56px;
+  height: 56px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  position: sticky !important;
+  position: -webkit-sticky !important;
 }
 
 .gallery-back-button:hover {
-  color: #f0f0f0;
+  background: rgba(0, 0, 0, 1);
+  border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 .gallery-back-button:active {
-  color: #e0e0e0;
+  background: rgba(0, 0, 0, 1);
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 .gallery-posts-container {
-  padding: 20px;
+  padding: 60px 0 20px 0; /* Espace pour le bouton retour */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  min-height: calc(100vh - 60px);
+  gap: 0; /* Pas de gap pour le snap */
+  min-height: 100vh;
 }
 
 .gallery-posts-container .tiktok-post-preview {
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  border-radius: 15px;
+  height: 100vh; /* Chaque post occupe tout l'écran */
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gallery-posts-container .tiktok-video-container {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 100vh;
   background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gallery-posts-container .tiktok-video-player,
 .gallery-posts-container .tiktok-image-preview {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+  object-position: center;
 }
 
 /* Flèches de navigation desktop */

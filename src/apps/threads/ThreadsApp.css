@@ -1,0 +1,1216 @@
+/* Threads — même ossature que TikTok, thème fil de discussion */
+
+.threads-app {
+  --threads-fg: #101010;
+  --threads-muted: #6b7280;
+  --threads-line: #e8e8ef;
+  --threads-bg-card: #ffffff;
+}
+
+.threads-app .shell-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.08);
+  background: rgba(255, 255, 255, 0.75);
+  margin: 0 auto 24px auto;
+  max-width: 1100px;
+}
+
+.threads-app .shell-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.threads-app .shell-topbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.threads-app .shell-topbar-actions-primary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.threads-app .threads-brand.tiktok-brand {
+  background: #101010;
+  font-size: 14px;
+  padding: 8px 16px;
+  font-weight: 600;
+  border-radius: 20px;
+  gap: 8px;
+}
+
+.threads-app .threads-brand.tiktok-brand .tiktok-brand-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.threads-app .threads-brand.tiktok-brand .tiktok-brand-logo img {
+  width: 14px;
+  height: 14px;
+}
+
+.threads-app .threads-create-button.create-button {
+  background: linear-gradient(135deg, #0b0b0b, #1f1f1f);
+  font-size: 14px;
+  padding: 8px 16px;
+  font-weight: 500;
+  border-radius: 20px;
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.28);
+}
+
+/* Cartes grille — garde dimensions TikTok, fond type Threads */
+.threads-app .tiktok-post-preview.threads-post-preview {
+  background: var(--threads-bg-card);
+  border: 1px solid var(--threads-line);
+  width: min(100%, 680px);
+  height: auto;
+  min-height: 0;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.threads-app .tiktok-post-preview.threads-post-preview.desktop,
+.threads-app .tiktok-post-preview.threads-post-preview.mobile {
+  height: auto;
+}
+
+.threads-app .tiktok-post-preview.threads-post-preview.mobile.threads-post-preview-video {
+  width: min(100%, 410px);
+}
+
+.threads-app .tiktok-post-preview.threads-post-preview.mobile.threads-post-preview-carousel {
+  width: min(100%, 390px);
+}
+
+.threads-app .tiktok-post-preview.threads-post-preview.mobile.threads-post-preview-text {
+  width: min(100%, 360px);
+}
+
+.threads-app .tiktok-post-preview.threads-post-preview.threads-post-preview-video {
+  width: min(100%, 680px);
+}
+
+.threads-app .tiktok-post-preview.threads-post-preview.threads-post-preview-carousel {
+  width: min(100%, 620px);
+}
+
+.threads-app .tiktok-post-preview.threads-post-preview.threads-post-preview-text {
+  width: min(100%, 560px);
+}
+
+.threads-app .tiktok-post-preview.threads-post-preview:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+}
+
+.threads-thread-surface.tiktok-video-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 14px;
+  box-sizing: border-box;
+  height: 100%;
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 55%);
+}
+
+.threads-thread-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 36px;
+}
+
+.threads-thread-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.threads-thread-avatar-lg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #101010;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.threads-thread-handle {
+  font-weight: 700;
+  color: var(--threads-fg);
+  font-size: 13px;
+}
+
+.threads-thread-kind {
+  font-size: 11px;
+  color: var(--threads-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.threads-thread-copy {
+  flex: 1;
+  white-space: pre-wrap;
+  line-height: 1.45;
+  color: var(--threads-fg);
+  font-size: 13px;
+}
+
+.threads-thread-toolbar {
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--threads-muted);
+}
+
+.threads-thread-toolbar span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.threads-scheduled-badge.scheduled-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--threads-line);
+  color: var(--threads-fg);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.threads-more-options.more-options {
+  z-index: 6;
+}
+
+.threads-post-preview .more-btn.threads-more-btn {
+  width: 30px !important;
+  min-width: 30px !important;
+  height: 24px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  transition: opacity 0.18s ease;
+}
+
+.threads-post-preview .more-btn.threads-more-btn:hover {
+  background: transparent !important;
+  transform: none !important;
+  opacity: 0.75;
+}
+
+.threads-post-preview .threads-more-icon {
+  color: #6b7280;
+  width: 22px;
+  height: 22px;
+}
+
+/* Menu contextuel lisible sur fond clair */
+.threads-post-preview .published-edit-dropdown.threads-post-dropdown {
+  background: #ffffff !important;
+  border: 1px solid var(--threads-line) !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12) !important;
+}
+
+.threads-post-preview .published-edit-dropdown.threads-post-dropdown button {
+  color: var(--threads-fg) !important;
+}
+
+.threads-post-preview .published-edit-dropdown.threads-post-dropdown button:hover {
+  background: #f3f4f6 !important;
+}
+
+.threads-dashboard-social-post.threads-social-post {
+  width: 100%;
+}
+
+.threads-social-post {
+  --threads-social-indent: 46px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  color: var(--threads-fg);
+}
+
+.threads-social-post.threads-social-post-mobile {
+  --threads-social-indent: 40px;
+  gap: 10px;
+}
+
+.threads-social-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.threads-social-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.threads-social-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #111111, #424242);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+
+.threads-social-post-mobile .threads-social-avatar {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+}
+
+.threads-social-author-meta {
+  min-width: 0;
+}
+
+.threads-social-author-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.threads-social-post-mobile .threads-social-author-line {
+  gap: 5px;
+  font-size: 13px;
+}
+
+.threads-social-name {
+  font-weight: 700;
+  color: #111111;
+}
+
+.threads-social-verified {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1d9bf0;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.threads-social-time {
+  color: var(--threads-muted);
+  font-weight: 500;
+}
+
+.threads-social-header-action {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.threads-social-body {
+  margin-left: var(--threads-social-indent);
+  width: calc(100% - var(--threads-social-indent));
+  box-sizing: border-box;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.threads-social-post-mobile .threads-social-body {
+  gap: 10px;
+}
+
+.threads-inline-more-options.more-options {
+  position: static;
+}
+
+.threads-inline-more-options .threads-more-btn {
+  border-radius: 0 !important;
+}
+
+.threads-inline-more-options .threads-more-icon {
+  color: #6b7280;
+}
+
+.threads-social-copy {
+  margin: 0;
+  color: #111111;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.threads-social-post-mobile .threads-social-copy {
+  font-size: 13px;
+  line-height: 1.38;
+}
+
+.threads-social-hashtags {
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.threads-social-translate {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.threads-social-post-mobile .threads-social-translate {
+  font-size: 12px;
+}
+
+.threads-social-media-shell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  background: #0f172a;
+}
+
+.threads-social-post-mobile .threads-social-media-shell,
+.threads-social-post-mobile .threads-social-gallery-item {
+  border-radius: 14px;
+}
+
+.threads-social-video {
+  display: block;
+  width: 100%;
+  max-height: 540px;
+  min-height: 260px;
+  object-fit: cover;
+  background: #111111;
+}
+
+.threads-social-video-shell {
+  cursor: pointer;
+}
+
+.threads-social-post-mobile .threads-social-video {
+  min-height: 220px;
+  max-height: 440px;
+}
+
+.threads-social-image {
+  display: block;
+  width: 100%;
+  max-height: 540px;
+  min-height: 260px;
+  object-fit: cover;
+  background: #f3f4f6;
+}
+
+.threads-social-post-mobile .threads-social-image {
+  min-height: 220px;
+  max-height: 440px;
+}
+
+.threads-social-image-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.threads-social-image-trigger .threads-social-media-shell {
+  pointer-events: none;
+}
+
+.threads-social-gallery {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.threads-social-post-mobile .threads-social-gallery {
+  gap: 5px;
+}
+
+.threads-social-gallery-item {
+  padding: 0;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f3f4f6;
+  cursor: pointer;
+}
+
+.threads-social-gallery-media,
+.threads-social-gallery-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.threads-social-gallery-media {
+  min-height: 300px;
+  aspect-ratio: 0.68 / 1;
+  object-fit: cover;
+  background: #f3f4f6;
+}
+
+.threads-social-post-mobile .threads-social-gallery-media {
+  min-height: 240px;
+}
+
+.threads-social-gallery-video {
+  position: relative;
+}
+
+.threads-social-gallery-video .threads-social-gallery-media {
+  background: #000000;
+}
+
+.threads-social-gallery-video-overlay {
+  position: absolute;
+  inset: auto 10px 10px 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.threads-social-gallery-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.58);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.threads-social-post-mobile .threads-social-gallery-pill {
+  min-height: 22px;
+  padding: 0 8px;
+  font-size: 11px;
+}
+
+.threads-social-video-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.7) 100%);
+}
+
+.threads-social-video-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.threads-social-video-volume {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.46);
+  color: #ffffff;
+  cursor: default;
+}
+
+.threads-social-post-mobile .threads-social-video-volume {
+  width: 24px;
+  height: 24px;
+}
+
+.threads-social-ai-note {
+  color: #8b8b96;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.threads-social-post-mobile .threads-social-ai-note {
+  font-size: 12px;
+}
+
+.threads-social-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: #4b5563;
+  font-size: 14px;
+  padding-bottom: 2px;
+}
+
+.threads-social-post-mobile .threads-social-actions {
+  gap: 14px;
+  font-size: 12px;
+}
+
+.threads-social-actions span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.threads-social-post-mobile .threads-social-actions span {
+  gap: 5px;
+}
+
+.threads-image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  overflow: hidden;
+}
+
+.threads-image-lightbox-stage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 64px;
+  box-sizing: border-box;
+}
+
+.threads-image-lightbox-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 128px);
+  max-height: 100vh;
+  object-fit: contain;
+}
+
+.threads-video-lightbox-frame {
+  position: relative;
+  height: 100vh;
+  max-width: min(72vw, 420px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.threads-video-lightbox-video {
+  display: block;
+  width: auto;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+  background: #000000;
+}
+
+.threads-video-lightbox-overlay {
+  position: absolute;
+  inset: auto 18px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.threads-video-lightbox-progress-track {
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.36);
+  overflow: hidden;
+}
+
+.threads-video-lightbox-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #ffffff;
+}
+
+.threads-video-lightbox-controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.threads-image-lightbox-close,
+.threads-image-lightbox-nav {
+  position: fixed;
+  border: none;
+  border-radius: 999px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18, 18, 18, 0.48);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: background-color 0.18s ease, opacity 0.18s ease;
+}
+
+.threads-image-lightbox-close:hover,
+.threads-image-lightbox-nav:hover:not(:disabled) {
+  background: rgba(28, 28, 28, 0.72);
+}
+
+.threads-image-lightbox-close {
+  top: 18px;
+  left: 18px;
+}
+
+.threads-image-lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.threads-image-lightbox-nav-left {
+  left: 18px;
+}
+
+.threads-image-lightbox-nav-right {
+  right: 18px;
+}
+
+.threads-image-lightbox-nav:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.threads-feed-card-social {
+  padding: 16px;
+}
+
+.threads-feed-card-social.mobile {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+.threads-feed-social-post.threads-social-post {
+  max-width: 720px;
+}
+
+.threads-compose-post-shell {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.threads-compose-live-post.threads-social-post {
+  width: 100%;
+}
+
+.threads-delete-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 10, 12, 0.58);
+  backdrop-filter: blur(14px);
+}
+
+.threads-delete-modal {
+  width: min(100%, 420px);
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(18, 18, 20, 0.96) 0%, rgba(10, 10, 12, 0.98) 100%);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+  color: #ffffff;
+}
+
+.threads-delete-modal-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.threads-delete-modal h4 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.threads-delete-modal p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.threads-delete-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.threads-delete-cancel,
+.threads-delete-confirm {
+  flex: 1;
+  min-height: 46px;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease, background-color 0.18s ease;
+}
+
+.threads-delete-cancel {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.threads-delete-confirm {
+  background: #ffffff;
+  color: #111111;
+}
+
+.threads-delete-cancel:hover,
+.threads-delete-confirm:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+  .threads-app .tiktok-post-preview.threads-post-preview,
+  .threads-app .tiktok-post-preview.threads-post-preview.threads-post-preview-video,
+  .threads-app .tiktok-post-preview.threads-post-preview.threads-post-preview-carousel,
+  .threads-app .tiktok-post-preview.threads-post-preview.threads-post-preview-text {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .threads-social-copy {
+    font-size: 14px;
+  }
+
+  .threads-social-actions {
+    gap: 16px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+
+  .threads-social-video {
+    min-height: 220px;
+  }
+
+  .threads-social-image {
+    min-height: 220px;
+  }
+
+  .threads-social-gallery-media {
+    min-height: 220px;
+  }
+
+  .threads-image-lightbox-stage {
+    padding: 0 48px;
+  }
+
+  .threads-image-lightbox-image {
+    max-width: calc(100vw - 96px);
+  }
+
+  .threads-video-lightbox-frame {
+    max-width: min(76vw, 360px);
+  }
+
+  .threads-delete-modal {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .threads-delete-modal-actions {
+    flex-direction: column;
+  }
+}
+
+/* Composer — même flux que TikTok, sans padding géant IA */
+.threads-compose-panel.story-creation-panel {
+  position: relative;
+  padding-top: 8px;
+}
+
+.threads-compose-top.ai-interface-exact {
+  align-items: stretch;
+  padding: 12px 0 8px;
+  width: 100%;
+}
+
+/* Inspection navigateur téléphone uniquement (viewport) */
+@media (max-width: 760px) {
+  .threads-compose-top.ai-interface-exact {
+    align-items: stretch;
+    padding: 34px 0 8px;
+    width: 100%;
+  }
+}
+
+.threads-inline-ai.publish-ai-form {
+  width: 100%;
+}
+
+.threads-compose-kind-pill {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--threads-muted);
+}
+
+.threads-compose-textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 120px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--threads-line);
+  font-size: 13px;
+  line-height: 1.45;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.threads-compose-meta-tools {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.threads-compose-meta-tools-under-media {
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+.threads-input-ai-inline {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  background: #111111;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease, background-color 0.18s ease;
+  flex: 0 0 auto;
+}
+
+.threads-input-ai-inline:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #1f1f1f;
+}
+
+.threads-input-ai-inline:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.story-media-empty,
+.story-media-add {
+  position: relative;
+}
+
+.threads-media-ai-badge {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 17, 17, 0.92);
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.18s ease, opacity 0.18s ease, background-color 0.18s ease;
+}
+
+.threads-media-ai-badge:hover:not(:disabled) {
+  transform: scale(1.04);
+  background: #111111;
+}
+
+.threads-media-ai-badge:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.threads-composer-meta {
+  font-size: 11px;
+  color: var(--threads-muted);
+  text-align: right;
+  margin-bottom: 6px;
+}
+
+.threads-compose-publish-row.tiktok-publish-actions {
+  margin-top: 8px;
+}
+
+.threads-publish-toast {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.threads-banner-notice {
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Threads mobile layout - organisation exacte comme screenshot */
+.threads-app.shell-platform-layout-mobile .shell-topbar.shell-topbar-dashboard {
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 16px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.threads-app.shell-platform-layout-mobile .shell-topbar-row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+}
+
+.threads-app.shell-platform-layout-mobile .shell-topbar-left {
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.threads-app.shell-platform-layout-mobile .threads-brand.tiktok-brand {
+  padding: 10px 16px;
+  font-size: 14px;
+  flex: 0 1 auto;
+  max-width: 140px;
+}
+
+.threads-app.shell-platform-layout-mobile .back-link {
+  padding: 10px 16px;
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+
+.threads-app.shell-platform-layout-mobile .shell-topbar.shell-topbar-dashboard .shell-topbar-actions {
+  align-items: stretch;
+  width: 100%;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.threads-app.shell-platform-layout-mobile .shell-topbar-actions-primary {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+}
+
+.threads-app.shell-platform-layout-mobile .strategy-button,
+.threads-app.shell-platform-layout-mobile .threads-create-button.create-button {
+  flex: 1;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.threads-app.shell-platform-layout-mobile .tiktok-platform-layout-switch-under-actions {
+  justify-content: center;
+  width: 100%;
+}
+
+.threads-app.shell-platform-layout-mobile .tiktok-platform-layout-switch-buttons {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.threads-app.shell-platform-layout-mobile .tiktok-platform-layout-switch-buttons button {
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.threads-feed-body-scroll {
+  flex: 1;
+  overflow: auto;
+  padding: 12px 14px;
+}
+
+.threads-feed-post-copy {
+  margin: 0;
+  line-height: 1.45;
+  color: var(--threads-fg);
+  white-space: pre-wrap;
+}
+
+.threads-feed-overlay.device-overlay {
+  position: relative;
+  padding: 10px 12px 14px;
+  background: transparent;
+}
+
+.threads-feed-actions-row.feed-actions {
+  justify-content: flex-end;
+}
+
+.threads-feed-empty {
+  padding: 24px;
+  color: var(--threads-muted);
+  text-align: center;
+}
+
+.threads-create-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--threads-muted);
+}
+
+/* Aperçu téléphone — plusieurs médias côte à côte */
+.threads-phone-multi-strip {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #0f0f0f;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.threads-phone-multi-strip-item {
+  flex: 0 0 auto;
+  width: 42%;
+  max-width: 160px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #111;
+}
+
+.threads-phone-multi-strip-media {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.story-media-container .threads-phone-multi-strip {
+  position: relative;
+  z-index: 0;
+}
+
+.threads-feed-multi-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 10px;
+}
+
+.threads-feed-multi-item {
+  flex: 1 1 30%;
+  min-width: 72px;
+  max-width: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--threads-border, #e5e7eb);
+  background: #f3f4f6;
+}
+
+.threads-feed-multi-media {
+  display: block;
+  width: 100%;
+  height: 88px;
+  object-fit: cover;
+}
